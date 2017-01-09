@@ -5,10 +5,8 @@ set -e
 if [ -n "$OSX_ARCH" ] ; then
     export CXXFLAGS="$CXXFLAGS -stdlib=libc++"
     platform=macosx
-    soext=dylib
 else
     platform=linux
-    soext=so
 fi
 
 # We've added stock (version 3) xerces-c as a build-time dep to make sure that
@@ -31,4 +29,4 @@ make install
 cd $PREFIX
 find . '(' -name '*.la' -o -name '*.a' ')' -delete
 mv include/xercesc include/xercesc28
-rm -f lib/libxerces-c.$soext lib/libxerces-depdom.$soext
+rm -f lib/libxerces-c${SHLIB_EXT} lib/libxerces-depdom${SHLIB_EXT}
