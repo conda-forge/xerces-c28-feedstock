@@ -15,13 +15,15 @@ source:
     - macsvn.diff  # [osx]
 
 build:
-  number: 0
+  number: 1
   detect_binary_files_with_prefix: true
   skip: true  # [win]
 
 requirements:
   build:
-    - toolchain
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
     # We include xerces-c as a build-time dep to make sure that we don't overwrite
     # any of its files.
     - xerces-c
