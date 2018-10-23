@@ -5,6 +5,10 @@ set -ex
 if [ -n "$OSX_ARCH" ] ; then
     export CXXFLAGS="$CXXFLAGS -stdlib=libc++"
     platform=macosx
+
+    if [ "$c_compiler" = clang ] ; then
+        export CXXFLAGS="$CXXFLAGS -Wno-c++11-narrowing"
+    fi
 else
     platform=linux
 fi
