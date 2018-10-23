@@ -1,21 +1,20 @@
 {% set name = "xerces-c28" %}
 {% set version = "2.8.0" %}
-{% set sha256 = "f41960813bde1846bbf3e77d7539c90e0983c34bfb99f5ebe32e9ad47a911f89" %}
+{% set sha256 = "416eaf74bbe6ff3b3c64a282e886810cad6cbb48478d3c83344661504c09c8d6" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: openlogic-xerces-c-{{ version }}-all-src-1.zip
-  url: https://olex-secure.openlogic.com/content/openlogic/xerces-c/{{ version }}/openlogic-xerces-c-{{ version }}-all-src-1.zip
+  url: http://archive.apache.org/dist/xerces/c/2/sources/xerces-c-src_2_8_0.tar.gz
   sha256: {{ sha256 }}
   # OS X patch from: https://issues.apache.org/jira/secure/attachment/12372362/macsvn.diff
   patches:
     - macsvn.diff  # [osx]
 
 build:
-  number: 1
+  number: 1001
   detect_binary_files_with_prefix: true
   skip: true  # [win]
 
