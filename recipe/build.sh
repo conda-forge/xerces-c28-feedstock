@@ -1,6 +1,6 @@
 #! /bin/bash
 
-set -e
+set -ex
 
 if [ -n "$OSX_ARCH" ] ; then
     export CXXFLAGS="$CXXFLAGS -stdlib=libc++"
@@ -18,13 +18,13 @@ rm -rf $PREFIX/include/xercesc $PREFIX/lib/libxerces-c* $PREFIX/lib/pkgconfig/xe
 
 export XERCESCROOT=$(pwd)
 cd src/xercesc
-bash ./runConfigure -p$platform -cgcc -xg++ -minmem -nsocket -tnative -rpthread -b64 -P$PREFIX
+bash ./runConfigure -p$platform -c$CC -x$CXX -minmem -nsocket -tnative -rpthread -b64 -P$PREFIX
 make # note: build is not parallel-compatible
 make install
 
 # We need to rename our output files so as to not conflict with the files in
-# the stock (version 3) xerces-c. This includes the unversion dynamic library
-# files.
+# the stock (version 3) xerces-c. This includes the unversioned dynamic
+# library files.
 
 cd $PREFIX
 find . '(' -name '*.la' -o -name '*.a' ')' -delete
