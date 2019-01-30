@@ -14,9 +14,13 @@ source:
     - macsvn.diff  # [osx]
 
 build:
-  number: 1001
-  detect_binary_files_with_prefix: true
+  number: 1002
   skip: true  # [win]
+  ignore_run_exports:
+    # See below.
+    - xerces-c
+  run_exports:
+    - {{ pin_subpackage('xerces-c28', max_pin='x.x') }}
 
 requirements:
   build:
