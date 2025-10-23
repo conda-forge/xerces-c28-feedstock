@@ -14,7 +14,7 @@ source:
     - macsvn.diff  # [osx]
 
 build:
-  number: 1002
+  number: 1003
   skip: true  # [win]
   ignore_run_exports:
     # See below.
@@ -25,6 +25,7 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
   host:
     # We include xerces-c as a build-time dep to make sure that we don't overwrite
